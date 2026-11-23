@@ -16,8 +16,8 @@ function Login() {
     const [mostrarSenha, setMostrarSenha] = useState(false);
 
     return (
-        <div className="login-page">
-            <aside className="login-brand">
+        <div className="login-page display-grid">
+            <aside className="login-brand display-flex position-relative">
                 <svg className="login-routes" viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
                     <path id="rota-principal" className="route-line" d="M-20 620 C 120 560, 160 420, 300 440 S 480 300, 640 240" />
                     <path className="route-line" d="M-20 300 C 100 340, 200 220, 320 260 S 520 520, 640 480" />
@@ -36,23 +36,23 @@ function Login() {
                     </circle>
                 </svg>
 
-                <div className="login-brand-top">
-                    <div className="login-logo">
+                <div className="login-brand-top display-flex position-relative">
+                    <div className="login-logo display-grid">
                         <img src={brasao} alt="Brasão da prefeitura" />
                     </div>
                     <div>
-                        <strong>Prefeitura Municipal de Santa Maria de Jetibá</strong>
+                        <strong className="display-block">Prefeitura Municipal de Santa Maria de Jetibá</strong>
                         <span>Secretaria de Transportes (SECTRAN)</span>
                     </div>
                 </div>
 
-                <div className="login-brand-copy">
+                <div className="login-brand-copy position-relative">
                     <h1>Gestão de Frotas</h1>
                     <p>Controle de veículos, manutenções, abastecimentos e rotas da administração pública em um só lugar.</p>
                 </div>
             </aside>
 
-            <main className="login-panel">
+            <main className="login-panel display-grid">
                 <section className="login-card" aria-labelledby="login-titulo">
                     <h2 id="login-titulo">Acessar o sistema</h2>
                     <p className="login-sub">Entre com suas credenciais institucionais.</p>
@@ -60,8 +60,8 @@ function Login() {
                     <form>
                         <div className={`login-field`}>
                             <label htmlFor="usuario">Usuário</label>
-                            <div className="login-input-wrap">
-                                <span className="login-icon">
+                            <div className="login-input-wrap position-relative">
+                                <span className="login-icon display-grid">
                                     <svg {...icon} width={18} height={18}>
                                         <circle cx="12" cy="8" r="4" />
                                         <path d="M4 21c0-4 3.6-7 8-7s8 3 8 7" />
@@ -77,8 +77,8 @@ function Login() {
                         </div>
 
                         <div className={`login-field`}>
-                            <label htmlFor="senha">Senha</label>
-                            <div className="login-input-wrap">
+                            <label htmlFor="senha" className="display-block">Senha</label>
+                            <div className="login-input-wrap position-relative">
                                 <span className="login-icon">
                                     <svg {...icon} width={18} height={18}>
                                         <rect x="4" y="11" width="16" height="10" rx="2" />
@@ -93,7 +93,7 @@ function Login() {
                                 />
                                 <button
                                 type="button"
-                                className="login-toggle"
+                                className="login-toggle display-grid"
                                 onClick={() => setMostrarSenha((v) => !v)}
                                 aria-label={mostrarSenha ? 'Ocultar senha' : 'Mostrar senha'}
                                 >
@@ -115,17 +115,17 @@ function Login() {
                             </div>
                         </div>
 
-                        <div className="login-row">
+                        <div className="login-row display-flex">
                             <a href="#">Esqueci minha senha</a>
                         </div>
 
-                        <button type="submit" className={`login-btn`}>
-                            <span className="login-spinner" aria-hidden="true" />
+                        <button type="submit" className={`login-btn display-flex`}>
+                            <span className="login-spinner display-block" aria-hidden="true" />
                             <span>Entrar</span>
                         </button>
                     </form>
 
-                    <div className="login-notice" role="note">
+                    <div className="login-notice display-flex" role="note">
                         <svg {...icon} width={16} height={16}>
                             <circle cx="12" cy="12" r="9" />
                             <path d="M12 8h.01M11 12h1v5h1" />
