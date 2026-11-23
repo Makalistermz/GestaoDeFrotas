@@ -1,0 +1,413 @@
+.login-page {
+    font-family: 'Segoe UI', system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+    color: var(--blue-900);
+    background: var(--blue-50);
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+}
+
+.login-page *,
+.login-page *::before,
+.login-page *::after { 
+    box-sizing: border-box; 
+}
+
+/* ---------- Painel institucional ---------- */
+.login-brand {
+    position: relative;
+    overflow: hidden;
+    color: var(--white);
+    background:
+        radial-gradient(circle at 20% 15%, var(--blue-600) 0%, transparent 55%),
+        linear-gradient(160deg, var(--blue-700) 0%, var(--blue-900) 60%, var(--blue-950) 100%);
+    padding: 56px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.login-brand-top { 
+    display: flex; 
+    align-items: center; 
+    gap: 14px; 
+    position: relative; 
+    z-index: 2; 
+}
+
+.login-logo {
+    width: 48px; 
+    height: 48px; 
+    border-radius: 12px;
+    background: rgba(252, 252, 252, .12);
+    border: 1px solid rgba(252, 252, 252, .25);
+    display: grid; 
+    place-items: center;
+}
+
+.login-logo img {
+    width: 38px;
+    height: 38px;
+}
+
+.login-brand-top strong { 
+    display: block; 
+    font-size: 15px; 
+    letter-spacing: .02em; 
+}
+
+.login-brand-top span { 
+    font-size: 12px; 
+    color: var(--blue-100); 
+}
+
+.login-brand-copy { 
+    position: relative; 
+    z-index: 2; 
+    max-width: 440px; 
+}
+
+.login-brand-copy h1 { 
+    font-size: clamp(28px, 3.2vw, 40px); 
+    line-height: 1.15; 
+    font-weight: 700; 
+    margin: 0 0 16px; 
+}
+
+.login-brand-copy p { 
+    color: var(--blue-100); 
+    line-height: 1.6; 
+    font-size: 16px; 
+    margin: 0; 
+}
+
+.login-routes { 
+    position: absolute; 
+    inset: 0; 
+    width: 100%; 
+    height: 100%; 
+    z-index: 1; 
+    opacity: .9; 
+}
+
+.route-line { 
+    fill: none; 
+    stroke: var(--blue-300); 
+    stroke-width: 2; 
+    stroke-dasharray: 6 10; 
+    opacity: .5; 
+    animation: login-dash 18s linear infinite; 
+}
+
+.pin { 
+    fill: var(--blue-100); 
+}
+
+.pulse { 
+    fill: none; 
+    stroke: var(--blue-200); 
+    stroke-width: 1.5; 
+    transform-box: fill-box; 
+    transform-origin: center; 
+    animation: login-pulse 3s ease-out infinite; 
+}
+
+.pulse.d2 { 
+    animation-delay: 1s; 
+}
+
+.pulse.d3 { 
+    animation-delay: 2s; 
+}
+
+.vehicle { 
+    fill: var(--white); 
+}
+
+/* ---------- Formulário ---------- */
+.login-panel { 
+    display: grid; 
+    place-items: center; 
+    padding: 40px 24px; 
+}
+
+.login-card {
+    width: 100%; 
+    max-width: 420px;
+    background: var(--white);
+    border-radius: 20px;
+    padding: 40px 36px;
+    box-shadow: 0 20px 50px -20px rgba(19, 42, 62, .35), 0 0 0 1px var(--blue-100);
+    animation: login-rise .7s cubic-bezier(.2, .8, .2, 1) both;
+}
+
+.login-card h2 { 
+    font-size: 26px; 
+    color: var(--blue-800); 
+    margin: 0 0 6px; 
+}
+
+.login-sub { 
+    color: var(--blue-600); 
+    font-size: 14px; 
+    margin: 0 0 28px; 
+}
+
+.login-field { 
+    margin-bottom: 18px; 
+}
+
+.login-field label { 
+    display: block; 
+    font-size: 13px; 
+    font-weight: 600; 
+    color: var(--blue-800); 
+    margin-bottom: 6px; 
+}
+
+.login-input-wrap { 
+    position: relative; 
+}
+
+.login-icon { 
+    position: absolute; 
+    left: 14px; 
+    top: 50%; 
+    transform: translateY(-50%); 
+    color: var(--blue-400); 
+    pointer-events: none; 
+    display: grid; 
+}
+
+.login-input-wrap input {
+    width: 100%; 
+    height: 48px;
+    padding: 0 44px;
+    font: inherit; 
+    font-size: 15px; 
+    color: var(--blue-900);
+    background: var(--white);
+    border: 1.5px solid var(--blue-100);
+    border-radius: var(--radius);
+    transition: border-color .2s, box-shadow .2s;
+}
+
+.login-input-wrap input::placeholder { 
+    color: var(--blue-300); 
+}
+
+.login-input-wrap input:hover { 
+    border-color: var(--blue-200); 
+}
+
+.login-input-wrap input:focus { 
+    outline: none; 
+    border-color: var(--blue-500); 
+    box-shadow: 0 0 0 4px rgba(59, 129, 191, .18); 
+}
+
+.login-error { 
+    color: var(--error); 
+    font-size: 12px; 
+    margin: 6px 0 0; 
+}
+
+.login-toggle {
+    position: absolute; 
+    right: 6px; 
+    top: 50%; 
+    transform: translateY(-50%);
+    width: 36px; 
+    height: 36px; 
+    border: 0; 
+    background: transparent; 
+    color: var(--blue-500);
+    border-radius: 8px; 
+    cursor: pointer; 
+    display: grid; 
+    place-items: center;
+}
+
+.login-toggle:hover { 
+    background: var(--blue-50); 
+}
+
+.login-toggle:focus-visible { 
+    outline: 2px solid var(--blue-500); 
+}
+
+.login-row { 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    margin: 4px 0 24px; 
+    font-size: 13px; 
+}
+
+.login-check { 
+    display: flex; 
+    align-items: center; 
+    gap: 8px; 
+    color: var(--blue-700); 
+    cursor: pointer; 
+}
+
+.login-check input { 
+    accent-color: var(--blue-700); 
+    width: 16px; 
+    height: 16px; 
+}
+
+.login-row a { 
+    color: var(--blue-500); 
+    text-decoration: none; 
+    font-weight: 600; 
+}
+
+.login-row a:hover { 
+    color: var(--blue-700); 
+    text-decoration: underline; 
+}
+
+.login-submit-error { 
+    color: var(--error); 
+    font-size: 13px; 
+    margin: -8px 0 16px; 
+}
+
+.login-btn {
+    width: 100%; 
+    height: 50px; 
+    border: 0; 
+    border-radius: var(--radius);
+    font: inherit; 
+    font-size: 15px; 
+    font-weight: 600; 
+    letter-spacing: .02em;
+    color: var(--white); 
+    cursor: pointer;
+    background: linear-gradient(135deg, var(--blue-500), var(--blue-700));
+    box-shadow: 0 10px 20px -10px rgba(38, 84, 124, .8);
+    transition: transform .15s, box-shadow .2s, filter .2s;
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    gap: 10px;
+}
+
+.login-btn:hover { 
+    transform: translateY(-1px); 
+    filter: brightness(1.06); 
+    box-shadow: 0 14px 24px -10px rgba(38, 84, 124, .9); 
+}
+
+.login-btn:active { 
+    transform: translateY(0); 
+}
+
+.login-btn:focus-visible { 
+    outline: 3px solid var(--blue-200); 
+    outline-offset: 2px; 
+}
+
+.login-btn:disabled {
+    opacity: .8; 
+    cursor: progress; 
+    transform: none; 
+}
+
+.login-spinner { 
+    width: 18px; 
+    height: 18px; 
+    border: 2px solid rgba(252, 252, 252, .4); 
+    border-top-color: var(--white); 
+    border-radius: 50%; 
+    animation: login-spin .7s linear infinite; 
+    display: none; 
+}
+
+.login-btn.loading .login-spinner { 
+    display: block; 
+}
+
+.login-notice {
+    margin-top: 24px; 
+    padding: 12px 14px;
+    background: var(--blue-50); 
+    color: var(--blue-700);
+    border-radius: 10px; 
+    font-size: 12.5px; 
+    line-height: 1.5;
+    display: flex; 
+    gap: 10px; 
+    align-items: flex-start;
+}
+
+.login-notice svg { 
+    flex: none; 
+    margin-top: 1px; 
+    color: var(--blue-500); 
+}
+
+@keyframes login-dash { 
+    to { 
+        stroke-dashoffset: -320; 
+    } 
+}
+
+@keyframes login-pulse { 
+    0% { 
+        transform: scale(.4); 
+        opacity: .9; 
+    } 
+    100% { 
+        transform: scale(2.6); 
+        opacity: 0; 
+    } 
+}
+
+@keyframes login-rise { 
+    from { 
+        opacity: 0; 
+        transform: translateY(18px); 
+    } 
+    to { 
+        opacity: 1; 
+        transform: none; 
+    } 
+}
+
+@keyframes login-spin { 
+    to { 
+        transform: rotate(360deg); 
+    } 
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 900px) {
+    .login-page { 
+        grid-template-columns: 1fr; 
+    }
+    .login-brand { 
+        padding: 28px 24px; 
+    }
+    .login-brand-copy { 
+        display: none; 
+    }
+    .login-panel { 
+        padding: 24px 16px 40px; 
+        margin-top: -24px; 
+    }
+    .login-card { 
+        padding: 32px 24px; 
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .login-page *, 
+    .login-page *::before, 
+    .login-page *::after { 
+        animation: none !important; 
+        transition: none !important; 
+    }
+}
