@@ -119,7 +119,7 @@ function Login() {
                             <a href="#">Esqueci minha senha</a>
                         </div>
 
-                        <button type="submit" className={`login-btn}`}>
+                        <button type="submit" className={`login-btn`}>
                             <span className="login-spinner" aria-hidden="true" />
                             <span>Entrar</span>
                         </button>
