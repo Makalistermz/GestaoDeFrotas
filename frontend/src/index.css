@@ -1,0 +1,21 @@
+:root {
+    --blue-50: #DEEAF5;
+    --blue-100: #BDD5EB;
+    --blue-200: #9CC0E0;
+    --blue-300: #7AABD6;
+    --blue-400: #5996CC;
+    --blue-500: #3B81BF;
+    --blue-600: #316B9E;
+    --blue-700: #26547C;
+    --blue-800: #1D3F5E;
+    --blue-900: #132A3E;
+    --blue-950: #0A151F;
+    --white: #FCFCFC;
+    --error: #B3261E;
+    --radius: 12px;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+}
