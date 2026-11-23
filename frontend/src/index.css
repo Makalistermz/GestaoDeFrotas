@@ -19,3 +19,19 @@ body {
   margin: 0px;
   padding: 0px;
 }
+
+.display-grid {
+  display: grid;
+}
+
+.display-flex {
+  display: flex;
+}
+
+.display-block {
+  display: block;
+}
+
+.position-relative {
+  position: relative;
+}
