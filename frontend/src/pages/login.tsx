@@ -68,10 +68,10 @@ function Login() {
                                     </svg>
                                 </span>
                                 <input
-                                id="usuario"
-                                type="text"
-                                placeholder="Matrícula ou e-mail"
-                                autoComplete="username"
+                                    id="usuario"
+                                    type="text"
+                                    placeholder="Matrícula ou e-mail"
+                                    autoComplete="username"
                                 />
                             </div>
                         </div>
@@ -86,16 +86,16 @@ function Login() {
                                     </svg>
                                 </span>
                                 <input
-                                id="senha"
-                                type={mostrarSenha ? 'text' : 'password'}
-                                placeholder="Digite sua senha"
-                                autoComplete="current-password"
+                                    id="senha"
+                                    type={mostrarSenha ? 'text' : 'password'}
+                                    placeholder="Digite sua senha"
+                                    autoComplete="current-password"
                                 />
                                 <button
-                                type="button"
-                                className="login-toggle display-grid"
-                                onClick={() => setMostrarSenha((v) => !v)}
-                                aria-label={mostrarSenha ? 'Ocultar senha' : 'Mostrar senha'}
+                                    type="button"
+                                    className="login-toggle display-grid"
+                                    onClick={() => setMostrarSenha((v) => !v)}
+                                    aria-label={mostrarSenha ? 'Ocultar senha' : 'Mostrar senha'}
                                 >
                                     <svg {...icon} width={20} height={20}>
                                         {mostrarSenha ? (
