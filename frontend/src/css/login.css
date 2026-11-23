@@ -366,6 +366,12 @@
     }
 }
 
+@media (max-width: 750px) {
+    .login-card {
+        margin-top: 32px;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .login-page *, 
     .login-page *::before, 
