@@ -1,5 +1,6 @@
 import brasao from "../assets/brasao.webp"
 import { useState } from 'react';
+import '../css/login.css';
 
 const icon = {
     fill: 'none',
