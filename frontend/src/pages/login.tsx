@@ -26,8 +26,8 @@ function Login() {
                         <circle className="pulse" cx="300" cy="440" r="8" />
                         <circle className="pin" cx="320" cy="260" r="5" />
                         <circle className="pulse d2" cx="320" cy="260" r="8" />
-                        <circle className="pin" cx="480" cy="330" r="5" />
-                        <circle className="pulse d3" cx="480" cy="330" r="8" />
+                        <circle className="pin" cx="505" cy="330" r="5" />
+                        <circle className="pulse d3" cx="505" cy="330" r="8" />
                     </g>
                     <circle className="vehicle" r="6">
                         <animateMotion dur="14s" repeatCount="indefinite">
@@ -70,7 +70,7 @@ function Login() {
                                 <input
                                 id="usuario"
                                 type="text"
-                                placeholder="CPF, matrícula ou e-mail"
+                                placeholder="Matrícula ou e-mail"
                                 autoComplete="username"
                                 />
                             </div>
