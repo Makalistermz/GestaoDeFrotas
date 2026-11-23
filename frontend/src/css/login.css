@@ -73,8 +73,7 @@
     margin: 0; 
 }
 
-.login-routes { 
-    position: absolute; 
+.login-routes {
     inset: 0; 
     width: 100%; 
     height: 100%; 
@@ -156,7 +155,6 @@
 }
 
 .login-icon { 
-    position: absolute; 
     left: 14px; 
     top: 50%; 
     transform: translateY(-50%); 
@@ -198,7 +196,6 @@
 }
 
 .login-toggle {
-    position: absolute; 
     right: 6px; 
     top: 50%; 
     transform: translateY(-50%);

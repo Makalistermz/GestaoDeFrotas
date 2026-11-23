@@ -18,7 +18,7 @@ function Login() {
     return (
         <div className="login-page display-grid">
             <aside className="login-brand display-flex position-relative">
-                <svg className="login-routes" viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <svg className="login-routes position-absolute" viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
                     <path id="rota-principal" className="route-line" d="M-20 620 C 120 560, 160 420, 300 440 S 480 300, 640 240" />
                     <path className="route-line" d="M-20 300 C 100 340, 200 220, 320 260 S 520 520, 640 480" />
                     <g>
@@ -61,7 +61,7 @@ function Login() {
                         <div className={`login-field`}>
                             <label htmlFor="usuario">Usuário</label>
                             <div className="login-input-wrap position-relative">
-                                <span className="login-icon display-grid">
+                                <span className="login-icon display-grid position-absolute">
                                     <svg {...icon} width={18} height={18}>
                                         <circle cx="12" cy="8" r="4" />
                                         <path d="M4 21c0-4 3.6-7 8-7s8 3 8 7" />
@@ -79,7 +79,7 @@ function Login() {
                         <div className={`login-field`}>
                             <label htmlFor="senha" className="display-block">Senha</label>
                             <div className="login-input-wrap position-relative">
-                                <span className="login-icon">
+                                <span className="login-icon display-grid position-absolute">
                                     <svg {...icon} width={18} height={18}>
                                         <rect x="4" y="11" width="16" height="10" rx="2" />
                                         <path d="M8 11V7a4 4 0 0 1 8 0v4" />
@@ -93,7 +93,7 @@ function Login() {
                                 />
                                 <button
                                     type="button"
-                                    className="login-toggle display-grid"
+                                    className="login-toggle display-grid position-absolute"
                                     onClick={() => setMostrarSenha((v) => !v)}
                                     aria-label={mostrarSenha ? 'Ocultar senha' : 'Mostrar senha'}
                                 >
