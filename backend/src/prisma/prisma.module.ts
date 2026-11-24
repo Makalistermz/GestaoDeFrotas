@@ -1,4 +1,7 @@
 import { Module } from '@nestjs/common';
+import { PrismaController } from './prisma.controller';
 
-@Module({})
+@Module({
+  controllers: [PrismaController]
+})
 export class PrismaModule {}
