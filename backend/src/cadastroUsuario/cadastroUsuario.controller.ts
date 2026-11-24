@@ -4,6 +4,7 @@ import {
     Post, 
 } from '@nestjs/common';
 import { CadastroUsuarioService } from './cadastroUsuario.service';
+import { CadastrarUsuarioDto } from './dto/criarUsuario.dto';
 
 @Controller('cadastro')
 export class CadastroUsuarioController {
