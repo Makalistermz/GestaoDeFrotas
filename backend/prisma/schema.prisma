@@ -10,10 +10,10 @@ datasource db {
 model pessoas {
   id           Int                  @id @default(autoincrement())
   nome         String               @db.VarChar(200)
-  cpf          Int
+  cpf          String               @unique @db.VarChar(11)
   telefone     String               @db.VarChar(11)
-  email        String               @db.VarChar(250)
-  matricula    Int?
+  email        String               @unique @db.VarChar(250)
+  matricula    Int?                 @unique
   senha        String               @db.VarChar(150)
   tipo_usuario pessoas_tipo_usuario @default(user)
 }
