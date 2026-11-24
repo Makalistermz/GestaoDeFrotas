@@ -5,7 +5,7 @@ import { PrismaModule } from './prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { ConfigModule } from '@nestjs/config';
-import { CadastroModule } from './cadastro/cadastro.module';
+import { CadastroUsuarioModule } from './cadastroUsuario/cadastroUsuario.module';
 
 @Module({
   imports: [
@@ -15,7 +15,7 @@ import { CadastroModule } from './cadastro/cadastro.module';
     }),
     PrismaModule, 
     AuthModule, 
-    UsersModule, CadastroModule
+    UsersModule, CadastroUsuarioModule
   ],
   controllers: [AppController],
   providers: [AppService],
