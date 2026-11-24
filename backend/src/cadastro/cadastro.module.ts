@@ -4,6 +4,7 @@ import { CadastroService } from './cadastro.service';
 
 @Module({
   controllers: [CadastroController],
-  providers: [CadastroService]
+  providers: [CadastroService],
+  exports: [CadastroService]
 })
 export class CadastroModule {}
