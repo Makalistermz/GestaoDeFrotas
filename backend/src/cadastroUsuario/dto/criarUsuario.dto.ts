@@ -2,8 +2,9 @@ import {
     IsEmail,
     IsInt,
     IsNotEmpty,
+    IsOptional,
     IsString, 
-    Max,
+    MaxLength,
     MinLength
 } from "class-validator";
 import { IsCPF } from 'cpf-cnpj-validator/class-validator'
@@ -24,7 +25,8 @@ export class CadastrarUsuarioDto {
     email!: string;
 
     @IsInt()
-    @Max(20)
+    @IsOptional()
+    @MaxLength(20)
     matricula?: number;
 
     @IsString()
