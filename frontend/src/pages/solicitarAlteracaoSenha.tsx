@@ -13,7 +13,7 @@ const icon = {
     'aria-hidden': true,
 };
 
-export default function AlterarSenha() {
+export default function SolicitarAlteracaoSenha() {
     const [usuario, setUsuario] = useState('');
     const [erro, setErro] = useState<string | undefined>();
     const [loading, setLoading] = useState(false);
