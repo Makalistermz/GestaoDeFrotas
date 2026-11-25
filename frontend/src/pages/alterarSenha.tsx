@@ -26,6 +26,51 @@ export default function AlterarSenha() {
         return () => clearTimeout(t);
     }, [espera]);
 
+    async function enviarSolicitacao() {
+        const email = usuario.trim();
+
+        if (!email) {
+            setErro('Informe seu e-mail.');
+            return;
+        }
+
+        if (!/^\S+@\S+\.\S+$/.test(email)) {
+            setErro('Informe um e-mail válido.');
+            return;
+        }
+
+        setLoading(true);
+
+        try {
+            const resposta = await fetch(`${import.meta.env.VITE_API_URL}/alterar-senha/solicitar`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email }),
+            });
+
+            if (!resposta.ok) {
+                throw new Error(
+                    resposta.status === 429
+                        ? 'Muitas tentativas. Aguarde um pouco e tente novamente.'
+                        : 'Não foi possível enviar a solicitação. Tente novamente.',
+                );
+            }
+
+            setEnviado(true);
+            setEspera(60); // libera o reenvio após 60s
+        } catch (error) {
+            setEnviado(false); // volta ao formulário para o erro aparecer
+            setErro(error instanceof Error ? error.message : 'Erro inesperado.');
+        } finally {
+            setLoading(false);
+        }
+    }
+
+    function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+        e.preventDefault();
+        enviarSolicitacao();
+    }
+
     return (
         <div className="login-page display-grid">
             <aside className="login-brand display-flex position-relative">
@@ -72,7 +117,7 @@ export default function AlterarSenha() {
                                 Informe seu e-mail e enviaremos as instruções para criar uma nova senha.
                             </p>
 
-                            <form>
+                            <form onSubmit={handleSubmit} noValidate>
                                 <div className={`login-field${erro ? ' invalid' : ''}`}>
                                     <label htmlFor="usuario" className="display-block">E-mail</label>
                                     <div className="login-input-wrap position-relative">
@@ -84,9 +129,9 @@ export default function AlterarSenha() {
                                         </span>
                                         <input
                                             id="usuario"
-                                            type="text"
+                                            type="email"
                                             placeholder="E-mail"
-                                            autoComplete="username"
+                                            autoComplete="email"
                                             autoFocus
                                             value={usuario}
                                             onChange={(e) => {
@@ -144,13 +189,14 @@ export default function AlterarSenha() {
                                 redefinir sua senha. Confira também a caixa de spam.
                             </p>
 
-                            <a href="/login" className="login-btn display-flex fp-btn-link">
+                            <a href="/" className="login-btn display-flex fp-btn-link">
                                 Voltar para o login
                             </a>
 
                             <button
                                 type="button"
                                 className="fp-resend"
+                                onClick={enviarSolicitacao}
                                 disabled={espera > 0 || loading}
                             >
                                 {espera > 0 ? `Reenviar em ${espera}s` : loading ? 'Enviando...' : 'Reenviar'}
