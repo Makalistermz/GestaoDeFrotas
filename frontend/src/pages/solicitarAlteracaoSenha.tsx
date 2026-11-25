@@ -1,6 +1,6 @@
 import brasao from '../assets/brasao.webp';
 import { useEffect, useState } from 'react';
-import '../css/alterarSenha.css';
+import '../css/solicitarAlteracaoSenha.css';
 import ModalFeedback from '../components/modalFeedback';
 
 const icon = {

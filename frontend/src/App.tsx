@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router'
 import './App.css'
 import Login from './pages/login'
-import AlterarSenha from './pages/alterarSenha'
+import AlterarSenha from './pages/solicitarAlteracaoSenha'
 
 function App() {
   return(
