@@ -18,11 +18,15 @@ export class EmailService {
             const linkRecuperacao =
             `${process.env.FRONTEND_URL}/redefinirSenha?token=${encodeURIComponent(token)}`;
 
-            this.transporte.sendMail({
+            const solicitadoEm = new Intl.DateTimeFormat('pt-BR', {
+                dateStyle: 'short', timeStyle: 'short', timeZone: 'America/Sao_Paulo',
+            }).format(new Date()).replace(', ', ' às ');
+
+            await this.transporte.sendMail({
                 from: `"Gestão de frotas" <${process.env.SMTP_USER}>`,
                 to: email,
                 subject: "Redefinição de senha | Gestão de frotas",
-                text: `
+                html: `
                     <!doctype html>
                         <html lang="pt-BR">
                         <head>
@@ -85,7 +89,7 @@ export class EmailService {
                                                     <table role="presentation" class="btn" width="100%" cellspacing="0" cellpadding="0" border="0" style="margin:0 0 20px 0;">
                                                         <tr>
                                                             <td align="center" bgcolor="#26547C" style="background-color:#26547C;border-radius:14px;">
-                                                                <a href=${linkRecuperacao}
+                                                                <a href="${linkRecuperacao}"
                                                                 style="display:block;padding:18px 36px;font-family:'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:17px;line-height:22px;font-weight:700;letter-spacing:0.02em;color:#FCFCFC;text-decoration:none;border-radius:14px;">
                                                                 Criar nova senha &nbsp;&rarr;
                                                                 </a>
@@ -153,11 +157,11 @@ export class EmailService {
                                                     <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0" style="border:1px solid #BDD5EB;border-radius:14px;border-collapse:separate;">
                                                         <tr>
                                                             <td style="padding:14px 18px;font-size:13px;line-height:20px;color:#316B9E;border-bottom:1px solid #DEEAF5;" width="38%">Conta</td>
-                                                            <td style="padding:14px 18px;font-size:14px;line-height:20px;font-weight:600;color:#132A3E;border-bottom:1px solid #DEEAF5;">maria.silva@exemplo.gov.br</td>
+                                                            <td style="padding:14px 18px;font-size:14px;line-height:20px;font-weight:600;color:#132A3E;border-bottom:1px solid #DEEAF5;">${email}</td>
                                                         </tr>
                                                         <tr>
                                                             <td style="padding:14px 18px;font-size:13px;line-height:20px;color:#316B9E;" width="38%">Solicitado em</td>
-                                                            <td style="padding:14px 18px;font-size:14px;line-height:20px;font-weight:600;color:#132A3E;">25/11/2026 às 09:00</td>
+                                                            <td style="padding:14px 18px;font-size:14px;line-height:20px;font-weight:600;color:#132A3E;">${solicitadoEm}</td>
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -170,7 +174,7 @@ export class EmailService {
                                                         O botão não funcionou? Copie e cole este endereço no navegador:
                                                     </p>
                                                     <p style="margin:0;font-size:13px;line-height:20px;word-break:break-all;">
-                                                        <a href=${linkRecuperacao} style="color:#3B81BF;text-decoration:underline;">${linkRecuperacao}</a>
+                                                        <a href="${linkRecuperacao}" style="color:#3B81BF;text-decoration:underline;">${linkRecuperacao}</a>
                                                     </p>
                                                 </td>
                                             </tr>
@@ -212,6 +216,24 @@ export class EmailService {
                         </body>
                     </html>
                 `,
+                text: [
+                    `Olá, ${nome}.`,
+                    ``,
+                    `Recebemos uma solicitação para redefinir a senha da sua conta no sistema de Gestão de Frotas.`,
+                    ``,
+                    `Para criar uma nova senha, acesse o link abaixo (válido por 1 hora e de uso único):`,
+                    linkRecuperacao,
+                    ``,
+                    `Conta: ${email}`,
+                    `Solicitado em: ${solicitadoEm}`,
+                    ``,
+                    `Se não foi você, ignore este e-mail. Sua senha continua a mesma e nenhuma alteração será feita.`,
+                    `Por segurança, nunca compartilhe este link com ninguém.`,
+                    ``,
+                    `Prefeitura Municipal de Santa Maria de Jetibá`,
+                    `Secretaria de Transportes (SECTRAN)`,
+                    `Mensagem automática, por favor não responda. Em caso de dúvidas, procure o setor de TI.`,
+                ].join("\n"),
             });
         } catch (error) {
             console.error("Erro ao enviar e-mail", error);
