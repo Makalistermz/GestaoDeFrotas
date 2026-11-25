@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router'
 import './App.css'
 import Login from './pages/login'
 import SolicitarAlteracaoSenha from './pages/solicitarAlteracaoSenha'
+import AlterarSenha from './pages/alterarSenha'
 
 function App() {
   return(
@@ -9,6 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path='/solicitar/troca-senha' element={<SolicitarAlteracaoSenha />} />
+        <Route path='/trocar-senha' element={<AlterarSenha />} />
       </Routes>
     </>
   )
