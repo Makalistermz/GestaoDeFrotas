@@ -16,7 +16,7 @@ export class EmailService {
     async enviarTrocaDeSenha(email: string, nome: string, token: string) {
         try {
             const linkRecuperacao =
-            `${process.env.FRONTEND_URL}/redefinirSenha?token=${encodeURIComponent(token)}`;
+            `${process.env.FRONTEND_URL}/trocar-senha?token=${encodeURIComponent(token)}`;
 
             const solicitadoEm = new Intl.DateTimeFormat('pt-BR', {
                 dateStyle: 'short', timeStyle: 'short', timeZone: 'America/Sao_Paulo',
