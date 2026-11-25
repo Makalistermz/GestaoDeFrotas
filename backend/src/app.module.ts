@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { ConfigModule } from '@nestjs/config';
 import { CadastroUsuarioModule } from './cadastroUsuario/cadastroUsuario.module';
+import { EmailModule } from './email/email.module';
 
 @Module({
   imports: [
@@ -15,7 +16,7 @@ import { CadastroUsuarioModule } from './cadastroUsuario/cadastroUsuario.module'
     }),
     PrismaModule, 
     AuthModule, 
-    UsersModule, CadastroUsuarioModule
+    UsersModule, CadastroUsuarioModule, EmailModule
   ],
   controllers: [AppController],
   providers: [AppService],
