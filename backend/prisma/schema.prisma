@@ -8,14 +8,16 @@ datasource db {
 }
 
 model pessoas {
-  id           Int                  @id @default(autoincrement())
-  nome         String               @db.VarChar(200)
-  cpf          String               @unique @db.VarChar(11)
-  telefone     String               @db.VarChar(11)
-  email        String               @unique @db.VarChar(250)
-  matricula    Int?                 @unique
-  senha        String               @db.VarChar(150)
-  tipo_usuario pessoas_tipo_usuario @default(user)
+  id                          Int                  @id @default(autoincrement())
+  nome                        String               @db.VarChar(200)
+  cpf                         String               @unique @db.VarChar(11)
+  telefone                    String               @db.VarChar(11)
+  email                       String               @unique @db.VarChar(250)
+  matricula                   Int?                 @unique
+  senha                       String               @db.VarChar(150)
+  tipo_usuario                pessoas_tipo_usuario @default(user)
+  token_recuperacao           String?              @db.VarChar(64)
+  token_recuperacao_expira_em DateTime?
 }
 
 enum pessoas_tipo_usuario {
