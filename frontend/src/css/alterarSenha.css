@@ -1,0 +1,93 @@
+.fp-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--blue-500);
+    text-decoration: none;
+    transition: color .2s, gap .2s;
+}
+
+.fp-back:hover { 
+    color: var(--blue-700); 
+    gap: 10px; 
+}
+
+.fp-back:focus-visible { 
+    outline: 2px solid var(--blue-500); 
+    outline-offset: 3px; 
+    border-radius: 4px; 
+}
+
+/* ---------- Estado de sucesso ---------- */
+.fp-success { 
+    text-align: left; 
+    animation: fp-fade .5s ease both; 
+}
+
+.fp-success-icon {
+    width: 64px; 
+    height: 64px;
+    border-radius: 18px;
+    display: grid; 
+    place-items: center;
+    margin-bottom: 20px;
+    color: var(--blue-700);
+    background: var(--blue-50);
+    box-shadow: 0 0 0 8px rgba(189, 213, 235, .35);
+}
+
+/* <a> com aparência do botão principal */
+.fp-btn-link { 
+    text-decoration: none; 
+    margin-top: 8px; 
+}
+
+.fp-resend {
+    display: block;
+    width: 100%;
+    margin-top: 14px;
+    padding: 10px;
+    border: 0;
+    background: transparent;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--blue-500);
+    cursor: pointer;
+    border-radius: 8px;
+    transition: color .2s, background .2s;
+}
+
+.fp-resend:hover:not(:disabled) { 
+    color: var(--blue-700); 
+    background: var(--blue-50);
+}
+
+.fp-resend:focus-visible { 
+    outline: 2px solid var(--blue-500); 
+}
+
+.fp-resend:disabled { 
+    color: var(--blue-300); 
+    cursor: not-allowed; 
+}
+
+@keyframes fp-fade { 
+    from { 
+        opacity: 0; 
+        transform: translateY(10px); 
+    } 
+    to { 
+        opacity: 1; 
+        transform: none; 
+    } 
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .fp-success { 
+        animation: none; 
+    }
+}
