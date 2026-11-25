@@ -116,7 +116,7 @@ function Login() {
                         </div>
 
                         <div className="login-row display-flex">
-                            <a href="#">Esqueci minha senha</a>
+                            <a href="/alterarSenha">Esqueci minha senha</a>
                         </div>
 
                         <button type="submit" className={`login-btn display-flex`}>
