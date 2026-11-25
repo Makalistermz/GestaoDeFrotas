@@ -1,6 +1,7 @@
 import brasao from '../assets/brasao.webp';
 import { useEffect, useState } from 'react';
 import '../css/alterarSenha.css';
+import ModalFeedback from '../components/modalFeedback';
 
 const icon = {
     fill: 'none',
@@ -18,6 +19,11 @@ export default function AlterarSenha() {
     const [loading, setLoading] = useState(false);
     const [enviado, setEnviado] = useState(false);
     const [espera, setEspera] = useState(0);
+    const [feedback, setFeedback] = useState({
+        aberto: false,
+        tipo: "erro" as "erro" | "sucesso",
+        mensagem: ""
+    });
 
     // Contagem regressiva para liberar o reenvio
     useEffect(() => {
@@ -57,6 +63,11 @@ export default function AlterarSenha() {
             }
 
             setEnviado(true);
+            setFeedback({
+                aberto: true,
+                tipo: "sucesso",
+                mensagem: "E-mail enviado para sua caixa de entrada!",
+            });
             setEspera(60); // libera o reenvio após 60s
         } catch (error) {
             setEnviado(false); // volta ao formulário para o erro aparecer
@@ -204,6 +215,17 @@ export default function AlterarSenha() {
                         </div>
                     )}
                 </section>
+                <ModalFeedback
+                    aberto={feedback.aberto}
+                    tipo={feedback.tipo}
+                    mensagem={feedback.mensagem}
+                    aoFechar={() => {
+                        setFeedback((estadoAtual) => ({
+                            ...estadoAtual,
+                            aberto: false
+                        }));
+                    }}
+                />
             </main>
         </div>
     );
