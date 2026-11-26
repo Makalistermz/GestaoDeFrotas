@@ -240,7 +240,11 @@ export default function AlterarSenha() {
                             </div>
                         </div>
 
-                        <button type="submit" className={`auth-btn display-flex`} disabled={loading}>
+                        <button 
+                            type="submit" 
+                            className={`auth-btn display-flex${loading ? ' loading' : ''}`} 
+                            disabled={loading}
+                        >
                             <span className="auth-spinner display-block" aria-hidden="true" />
                             <span>{loading ? '' : 'Alterar'}</span>
                         </button>
