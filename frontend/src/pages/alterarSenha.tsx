@@ -1,5 +1,6 @@
 import brasao from "../assets/brasao.webp"
 import { useState } from 'react';
+import ModalFeedback from "../components/modalFeedback";
 
 const icon = {
     fill: 'none',
@@ -12,8 +13,58 @@ const icon = {
 };
 
 export default function AlterarSenha() {
+    const [parametros] = useSearchParams();
+    const token = parametros.get("token");
     const [mostrarSenha, setMostrarSenha] = useState(false);
-    const [mostrarConfirmarSenha, setMostrarConfirmarSenha] = useState(false)
+    const [mostrarConfirmarSenha, setMostrarConfirmarSenha] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [feedback, setFeedback] = useState({
+        aberto: false,
+        tipo: "erro" as "erro" | "sucesso",
+        mensagem: ""
+    });
+
+    async function AlterarSenha(
+        event: React.SubmitEvent<HTMLFormElement>
+    ) {
+        event.preventDefault();
+
+        const dadosFormulario = new FormData(event.currentTarget);
+
+        const dados = {
+            ...Object.fromEntries(dadosFormulario.entries()),
+            token
+        };
+
+        try {
+            setLoading(true);
+
+            const resposta = await fetch(`${import.meta.env.VITE_API_URL}/alterar-senha`, {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(dados)
+            });
+
+            if (!resposta.ok) {
+                throw new Error("Não foi possivel alterar a senha");
+            };
+
+            setFeedback({
+                aberto: true,
+                tipo: "sucesso",
+                mensagem: "Senha alterada com sucesso!"
+            });
+
+        } catch (error) {
+            setFeedback({
+                aberto: true,
+                tipo: "erro",
+                mensagem: `${error}`
+            });
+        } finally {
+            setLoading(false);
+        };
+    };
 
     return (
         <div className="auth-page display-grid">
@@ -57,7 +108,7 @@ export default function AlterarSenha() {
                     <h2 id="auth-titulo">Troca de senha</h2>
                     <p className="auth-sub">Defina uma nova senha para acessar o sistema</p>
 
-                    <form>
+                    <form onSubmit={AlterarSenha}>
                         <div className={`auth-field`}>
                             <label htmlFor="usuario">Senha</label>
                             <div className="auth-input-wrap position-relative">
@@ -72,6 +123,8 @@ export default function AlterarSenha() {
                                     type={mostrarSenha ? 'text' : 'password'}
                                     placeholder="Digite sua senha"
                                     autoComplete="current-password"
+                                    minLength={8}
+                                    required
                                 />
                                 <button
                                     type="button"
@@ -111,6 +164,8 @@ export default function AlterarSenha() {
                                     type={mostrarConfirmarSenha ? 'text' : 'password'}
                                     placeholder="Confirme sua senha"
                                     autoComplete="current-password"
+                                    minLength={8}
+                                    required
                                 />
                                 <button
                                     type="button"
@@ -136,13 +191,24 @@ export default function AlterarSenha() {
                             </div>
                         </div>
 
-                        <button type="submit" className={`auth-btn display-flex`}>
+                        <button type="submit" className={`auth-btn display-flex`} disabled={loading}>
                             <span className="auth-spinner display-block" aria-hidden="true" />
-                            <span>Alterar</span>
+                            <span>{loading ? '' : 'Alterar'}</span>
                         </button>
                     </form>
 
                 </section>
+                <ModalFeedback 
+                    aberto={feedback.aberto}
+                    tipo={feedback.tipo}
+                    mensagem={feedback.mensagem}
+                    aoFechar={() => {
+                        setFeedback((estadoAtual) => ({
+                            ...estadoAtual,
+                            aberto: false
+                        }));
+                    }}
+                />
             </main>
         </div>
     );
