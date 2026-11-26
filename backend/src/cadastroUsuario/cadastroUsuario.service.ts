@@ -80,5 +80,6 @@ export class CadastroUsuarioService {
             }
         });
 
+        await this.emailService.enviarEmailDeCadastro(emailMinusculo, nome);
     };
 }
