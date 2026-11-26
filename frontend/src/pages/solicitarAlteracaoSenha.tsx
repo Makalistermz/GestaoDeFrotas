@@ -83,9 +83,9 @@ export default function SolicitarAlteracaoSenha() {
     }
 
     return (
-        <div className="login-page display-grid">
-            <aside className="login-brand display-flex position-relative">
-                <svg className="login-routes position-absolute" viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <div className="auth-page display-grid">
+            <aside className="auth-brand display-flex position-relative">
+                <svg className="auth-routes position-absolute" viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
                     <path id="rota-principal" className="route-line" d="M-20 620 C 120 560, 160 420, 300 440 S 480 300, 640 240" />
                     <path className="route-line" d="M-20 300 C 100 340, 200 220, 320 260 S 520 520, 640 480" />
                     <g>
@@ -103,8 +103,8 @@ export default function SolicitarAlteracaoSenha() {
                     </circle>
                 </svg>
 
-                <div className="login-brand-top display-flex position-relative">
-                    <div className="login-logo display-grid">
+                <div className="auth-brand-top display-flex position-relative">
+                    <div className="auth-logo display-grid">
                         <img src={brasao} alt="Brasão da prefeitura" />
                     </div>
                     <div>
@@ -113,26 +113,26 @@ export default function SolicitarAlteracaoSenha() {
                     </div>
                 </div>
 
-                <div className="login-brand-copy position-relative">
+                <div className="auth-brand-copy position-relative">
                     <h1>Gestão de Frotas</h1>
                     <p>Controle de veículos, manutenções, abastecimentos e rotas da administração pública em um só lugar.</p>
                 </div>
             </aside>
 
-            <main className="login-panel display-grid">
-                <section className="login-card" aria-labelledby="fp-titulo">
+            <main className="auth-panel display-grid">
+                <section className="auth-card" aria-labelledby="fp-titulo">
                     {!enviado ? (
                         <>
                             <h2 id="fp-titulo">Esqueceu sua senha?</h2>
-                            <p className="login-sub">
+                            <p className="auth-sub">
                                 Informe seu e-mail e enviaremos as instruções para criar uma nova senha.
                             </p>
 
                             <form onSubmit={handleSubmit} noValidate>
-                                <div className={`login-field${erro ? ' invalid' : ''}`}>
+                                <div className={`auth-field${erro ? ' invalid' : ''}`}>
                                     <label htmlFor="usuario" className="display-block">E-mail</label>
-                                    <div className="login-input-wrap position-relative">
-                                        <span className="login-icon display-grid position-absolute">
+                                    <div className="auth-input-wrap position-relative">
+                                        <span className="auth-icon display-grid position-absolute">
                                             <svg {...icon} width={18} height={18}>
                                                 <circle cx="12" cy="8" r="4" />
                                                 <path d="M4 21c0-4 3.6-7 8-7s8 3 8 7" />
@@ -154,7 +154,7 @@ export default function SolicitarAlteracaoSenha() {
                                         />
                                     </div>
                                     {erro && (
-                                        <p id="usuario-erro" className="login-error" role="alert">
+                                        <p id="usuario-erro" className="auth-error" role="alert">
                                             {erro}
                                         </p>
                                     )}
@@ -162,10 +162,10 @@ export default function SolicitarAlteracaoSenha() {
 
                                 <button
                                     type="submit"
-                                    className={`login-btn display-flex${loading ? ' loading' : ''}`}
+                                    className={`auth-btn display-flex${loading ? ' loading' : ''}`}
                                     disabled={loading}
                                 >
-                                    <span className="login-spinner" aria-hidden="true" />
+                                    <span className="auth-spinner" aria-hidden="true" />
                                     <span>{loading ? 'Enviando...' : 'Enviar'}</span>
                                 </button>
                             </form>
@@ -177,7 +177,7 @@ export default function SolicitarAlteracaoSenha() {
                                 Voltar para o login
                             </a>
 
-                            <div className="login-notice display-flex" role="note">
+                            <div className="auth-notice display-flex" role="note">
                                 <svg {...icon} width={16} height={16}>
                                     <circle cx="12" cy="12" r="9" />
                                     <path d="M12 8h.01M11 12h1v5h1" />
@@ -195,12 +195,12 @@ export default function SolicitarAlteracaoSenha() {
                             </div>
 
                             <h2 id="fp-titulo">Verifique seu e-mail</h2>
-                            <p className="login-sub">
+                            <p className="auth-sub">
                                 Se os dados informados estiverem cadastrados, você receberá em instantes as instruções para
                                 redefinir sua senha. Confira também a caixa de spam.
                             </p>
 
-                            <a href="/" className="login-btn display-flex fp-btn-link">
+                            <a href="/" className="auth-btn display-flex fp-btn-link">
                                 Voltar para o login
                             </a>
 
