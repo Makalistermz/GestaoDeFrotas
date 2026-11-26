@@ -16,9 +16,9 @@ function Login() {
     const [mostrarSenha, setMostrarSenha] = useState(false);
 
     return (
-        <div className="login-page display-grid">
-            <aside className="login-brand display-flex position-relative">
-                <svg className="login-routes position-absolute" viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <div className="auth-page display-grid">
+            <aside className="auth-brand display-flex position-relative">
+                <svg className="auth-routes position-absolute" viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
                     <path id="rota-principal" className="route-line" d="M-20 620 C 120 560, 160 420, 300 440 S 480 300, 640 240" />
                     <path className="route-line" d="M-20 300 C 100 340, 200 220, 320 260 S 520 520, 640 480" />
                     <g>
@@ -36,8 +36,8 @@ function Login() {
                     </circle>
                 </svg>
 
-                <div className="login-brand-top display-flex position-relative">
-                    <div className="login-logo display-grid">
+                <div className="auth-brand-top display-flex position-relative">
+                    <div className="auth-logo display-grid">
                         <img src={brasao} alt="Brasão da prefeitura" />
                     </div>
                     <div>
@@ -46,22 +46,22 @@ function Login() {
                     </div>
                 </div>
 
-                <div className="login-brand-copy position-relative">
+                <div className="auth-brand-copy position-relative">
                     <h1>Gestão de Frotas</h1>
                     <p>Controle de veículos, manutenções, abastecimentos e rotas da administração pública em um só lugar.</p>
                 </div>
             </aside>
 
-            <main className="login-panel display-grid">
-                <section className="login-card" aria-labelledby="login-titulo">
-                    <h2 id="login-titulo">Acessar o sistema</h2>
-                    <p className="login-sub">Entre com suas credenciais institucionais.</p>
+            <main className="auth-panel display-grid">
+                <section className="auth-card" aria-labelledby="auth-titulo">
+                    <h2 id="auth-titulo">Acessar o sistema</h2>
+                    <p className="auth-sub">Entre com suas credenciais institucionais.</p>
 
                     <form>
-                        <div className={`login-field`}>
+                        <div className={`auth-field`}>
                             <label htmlFor="usuario">Usuário</label>
-                            <div className="login-input-wrap position-relative">
-                                <span className="login-icon display-grid position-absolute">
+                            <div className="auth-input-wrap position-relative">
+                                <span className="auth-icon display-grid position-absolute">
                                     <svg {...icon} width={18} height={18}>
                                         <circle cx="12" cy="8" r="4" />
                                         <path d="M4 21c0-4 3.6-7 8-7s8 3 8 7" />
@@ -76,10 +76,10 @@ function Login() {
                             </div>
                         </div>
 
-                        <div className={`login-field`}>
+                        <div className={`auth-field`}>
                             <label htmlFor="senha" className="display-block">Senha</label>
-                            <div className="login-input-wrap position-relative">
-                                <span className="login-icon display-grid position-absolute">
+                            <div className="auth-input-wrap position-relative">
+                                <span className="auth-icon display-grid position-absolute">
                                     <svg {...icon} width={18} height={18}>
                                         <rect x="4" y="11" width="16" height="10" rx="2" />
                                         <path d="M8 11V7a4 4 0 0 1 8 0v4" />
@@ -93,7 +93,7 @@ function Login() {
                                 />
                                 <button
                                     type="button"
-                                    className="login-toggle display-grid position-absolute"
+                                    className="auth-toggle display-grid position-absolute"
                                     onClick={() => setMostrarSenha((v) => !v)}
                                     aria-label={mostrarSenha ? 'Ocultar senha' : 'Mostrar senha'}
                                 >
@@ -115,17 +115,17 @@ function Login() {
                             </div>
                         </div>
 
-                        <div className="login-row display-flex">
+                        <div className="auth-row display-flex">
                             <a href="/solicitar/troca-senha">Esqueci minha senha</a>
                         </div>
 
-                        <button type="submit" className={`login-btn display-flex`}>
-                            <span className="login-spinner display-block" aria-hidden="true" />
+                        <button type="submit" className={`auth-btn display-flex`}>
+                            <span className="auth-spinner display-block" aria-hidden="true" />
                             <span>Entrar</span>
                         </button>
                     </form>
 
-                    <div className="login-notice display-flex" role="note">
+                    <div className="auth-notice display-flex" role="note">
                         <svg {...icon} width={16} height={16}>
                             <circle cx="12" cy="12" r="9" />
                             <path d="M12 8h.01M11 12h1v5h1" />

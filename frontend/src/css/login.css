@@ -1,4 +1,4 @@
-.login-page {
+.auth-page {
     font-family: 'Segoe UI', system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
     color: var(--blue-900);
     background: var(--blue-50);
@@ -6,14 +6,14 @@
     grid-template-columns: 1.1fr 1fr;
 }
 
-.login-page *,
-.login-page *::before,
-.login-page *::after { 
+.auth-page *,
+.auth-page *::before,
+.auth-page *::after { 
     box-sizing: border-box; 
 }
 
 /* ---------- Painel institucional ---------- */
-.login-brand {
+.auth-brand {
     overflow: hidden;
     color: var(--white);
     background:
@@ -24,13 +24,13 @@
     justify-content: space-between;
 }
 
-.login-brand-top { 
+.auth-brand-top { 
     align-items: center; 
     gap: 14px;
     z-index: 2; 
 }
 
-.login-logo {
+.auth-logo {
     width: 48px; 
     height: 48px; 
     border-radius: 12px;
@@ -39,41 +39,41 @@
     place-items: center;
 }
 
-.login-logo img {
+.auth-logo img {
     width: 34px;
     height: 38px;
 }
 
-.login-brand-top strong {
+.auth-brand-top strong {
     font-size: 15px; 
     letter-spacing: .02em; 
 }
 
-.login-brand-top span { 
+.auth-brand-top span { 
     font-size: 12px; 
     color: var(--blue-100); 
 }
 
-.login-brand-copy {
+.auth-brand-copy {
     z-index: 2; 
     max-width: 440px; 
 }
 
-.login-brand-copy h1 { 
+.auth-brand-copy h1 { 
     font-size: clamp(28px, 3.2vw, 40px); 
     line-height: 1.15; 
     font-weight: 700; 
     margin: 0 0 16px; 
 }
 
-.login-brand-copy p { 
+.auth-brand-copy p { 
     color: var(--blue-100); 
     line-height: 1.6; 
     font-size: 16px; 
     margin: 0; 
 }
 
-.login-routes {
+.auth-routes {
     inset: 0; 
     width: 100%; 
     height: 100%; 
@@ -87,7 +87,7 @@
     stroke-width: 2; 
     stroke-dasharray: 6 10; 
     opacity: .5; 
-    animation: login-dash 18s linear infinite; 
+    animation: auth-dash 18s linear infinite; 
 }
 
 .pin { 
@@ -100,7 +100,7 @@
     stroke-width: 1.5; 
     transform-box: fill-box; 
     transform-origin: center; 
-    animation: login-pulse 3s ease-out infinite; 
+    animation: auth-pulse 3s ease-out infinite; 
 }
 
 .pulse.d2 { 
@@ -116,45 +116,45 @@
 }
 
 /* ---------- Formulário ---------- */
-.login-panel { 
+.auth-panel { 
     place-items: center; 
     padding: 40px 24px; 
 }
 
-.login-card {
+.auth-card {
     width: 100%; 
     max-width: 420px;
     background: var(--white);
     border-radius: 20px;
     padding: 40px 36px;
     box-shadow: 0 20px 50px -20px rgba(19, 42, 62, .35), 0 0 0 1px var(--blue-100);
-    animation: login-rise .7s cubic-bezier(.2, .8, .2, 1) both;
+    animation: auth-rise .7s cubic-bezier(.2, .8, .2, 1) both;
 }
 
-.login-card h2 { 
+.auth-card h2 { 
     font-size: 26px; 
     color: var(--blue-800); 
     margin: 0 0 6px; 
 }
 
-.login-sub { 
+.auth-sub { 
     color: var(--blue-600); 
     font-size: 14px; 
     margin: 0 0 28px; 
 }
 
-.login-field { 
+.auth-field { 
     margin-bottom: 18px; 
 }
 
-.login-field label {
+.auth-field label {
     font-size: 13px; 
     font-weight: 600; 
     color: var(--blue-800); 
     margin-bottom: 6px; 
 }
 
-.login-icon { 
+.auth-icon { 
     left: 14px; 
     top: 50%; 
     transform: translateY(-50%); 
@@ -162,7 +162,7 @@
     pointer-events: none;
 }
 
-.login-input-wrap input {
+.auth-input-wrap input {
     width: 100%; 
     height: 48px;
     padding: 0 44px;
@@ -175,27 +175,27 @@
     transition: border-color .2s, box-shadow .2s;
 }
 
-.login-input-wrap input::placeholder { 
+.auth-input-wrap input::placeholder { 
     color: var(--blue-300); 
 }
 
-.login-input-wrap input:hover { 
+.auth-input-wrap input:hover { 
     border-color: var(--blue-200); 
 }
 
-.login-input-wrap input:focus { 
+.auth-input-wrap input:focus { 
     outline: none; 
     border-color: var(--blue-500); 
     box-shadow: 0 0 0 4px rgba(59, 129, 191, .18); 
 }
 
-.login-error { 
+.auth-error { 
     color: var(--error); 
     font-size: 12px; 
     margin: 6px 0 0; 
 }
 
-.login-toggle {
+.auth-toggle {
     right: 6px; 
     top: 50%; 
     transform: translateY(-50%);
@@ -209,39 +209,39 @@
     place-items: center;
 }
 
-.login-toggle:hover { 
+.auth-toggle:hover { 
     background: var(--blue-50); 
 }
 
-.login-toggle:focus-visible { 
+.auth-toggle:focus-visible { 
     outline: 2px solid var(--blue-500); 
 }
 
-.login-row { 
+.auth-row { 
     align-items: center; 
     justify-content: space-between; 
     margin: 4px 0 24px; 
     font-size: 13px; 
 }
 
-.login-row a { 
+.auth-row a { 
     color: var(--blue-500); 
     text-decoration: none; 
     font-weight: 600; 
 }
 
-.login-row a:hover { 
+.auth-row a:hover { 
     color: var(--blue-700); 
     text-decoration: underline; 
 }
 
-.login-submit-error { 
+.auth-submit-error { 
     color: var(--error); 
     font-size: 13px; 
     margin: -8px 0 16px; 
 }
 
-.login-btn {
+.auth-btn {
     width: 100%; 
     height: 50px; 
     border: 0; 
@@ -260,38 +260,38 @@
     gap: 10px;
 }
 
-.login-btn:hover { 
+.auth-btn:hover { 
     transform: translateY(-1px); 
     filter: brightness(1.06); 
     box-shadow: 0 14px 24px -10px rgba(38, 84, 124, .9); 
 }
 
-.login-btn:active { 
+.auth-btn:active { 
     transform: translateY(0); 
 }
 
-.login-btn:focus-visible { 
+.auth-btn:focus-visible { 
     outline: 3px solid var(--blue-200); 
     outline-offset: 2px; 
 }
 
-.login-btn:disabled {
+.auth-btn:disabled {
     opacity: .8; 
     cursor: progress; 
     transform: none; 
 }
 
-.login-spinner { 
+.auth-spinner { 
     width: 18px; 
     height: 18px; 
     border: 2px solid rgba(252, 252, 252, .4); 
     border-top-color: var(--white); 
     border-radius: 50%; 
-    animation: login-spin .7s linear infinite; 
+    animation: auth-spin .7s linear infinite; 
     display: none; 
 }
 
-.login-notice {
+.auth-notice {
     margin-top: 24px; 
     padding: 12px 14px;
     background: var(--blue-50); 
@@ -303,19 +303,19 @@
     align-items: flex-start;
 }
 
-.login-notice svg { 
+.auth-notice svg { 
     flex: none; 
     margin-top: 1px; 
     color: var(--blue-500); 
 }
 
-@keyframes login-dash { 
+@keyframes auth-dash { 
     to { 
         stroke-dashoffset: -320; 
     } 
 }
 
-@keyframes login-pulse { 
+@keyframes auth-pulse { 
     0% { 
         transform: scale(.4); 
         opacity: .9; 
@@ -326,7 +326,7 @@
     } 
 }
 
-@keyframes login-rise { 
+@keyframes auth-rise { 
     from { 
         opacity: 0; 
         transform: translateY(18px); 
@@ -337,7 +337,7 @@
     } 
 }
 
-@keyframes login-spin { 
+@keyframes auth-spin { 
     to { 
         transform: rotate(360deg); 
     } 
@@ -345,34 +345,34 @@
 
 /* ---------- Responsivo ---------- */
 @media (max-width: 900px) {
-    .login-page { 
+    .auth-page { 
         grid-template-columns: 1fr; 
     }
-    .login-brand { 
+    .auth-brand { 
         padding: 28px 24px; 
     }
-    .login-brand-copy { 
+    .auth-brand-copy { 
         display: none; 
     }
-    .login-panel { 
+    .auth-panel { 
         padding: 24px 16px 40px; 
         margin-top: -24px; 
     }
-    .login-card { 
+    .auth-card { 
         padding: 32px 24px; 
     }
 }
 
 @media (max-width: 750px) {
-    .login-card {
+    .auth-card {
         margin-top: 32px;
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .login-page *, 
-    .login-page *::before, 
-    .login-page *::after { 
+    .auth-page *, 
+    .auth-page *::before, 
+    .auth-page *::after { 
         animation: none !important; 
         transition: none !important; 
     }
