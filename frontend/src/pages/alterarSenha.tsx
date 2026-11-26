@@ -1,5 +1,7 @@
 import brasao from "../assets/brasao.webp"
+import "../css/linkInvalido.css"
 import { useState } from 'react';
+import { Link, useSearchParams } from 'react-router';
 import ModalFeedback from "../components/modalFeedback";
 
 const icon = {
@@ -24,12 +26,55 @@ export default function AlterarSenha() {
         mensagem: ""
     });
 
+    if (!token) {
+        return (
+            <main className="redefine invalid--redefine">
+            <section className="invalid__message" role="alert" aria-labelledby="invalid-titulo">
+                <div className="redefine__icon-error">
+                    <svg {...icon} width={30} height={30}>
+                        <path d="M10 13a5 5 0 0 0 7.1 0l2.4-2.4a5 5 0 0 0-7.1-7.1l-1 1" />
+                        <path d="M14 11a5 5 0 0 0-7.1 0l-2.4 2.4a5 5 0 0 0 7.1 7.1l1-1" />
+                        <path d="M3 3l18 18" />
+                    </svg>
+                </div>
+
+                <h1 id="invalid-titulo">Link inválido</h1>
+
+                <p>
+                    Não encontramos um link válido neste endereço. Isso geralmente acontece quando o link é copiado pela metade ou cortado.
+                </p>
+
+                <div className="invalid__hint">
+                    <svg {...icon} width={16} height={16}>
+                        <circle cx="12" cy="12" r="9" />
+                        <path d="M12 8h.01M11 12h1v5h1" />
+                    </svg>
+                    <span>
+                        Abra o link direto pelo botão do e-mail. Por segurança, ele expira em 1 hora e só pode ser usado uma vez.
+                    </span>
+                </div>
+
+                <div className="invalid__actions">
+                    <Link to="/solicitar/troca-senha" className="invalid__primary">
+                        Solicitar novo link
+                    </Link>
+
+                    <Link to="/" className="invalid__secondary">
+                        Voltar para o login
+                    </Link>
+                </div>
+            </section>
+        </main>
+        );
+    };
+
     async function AlterarSenha(
         event: React.SubmitEvent<HTMLFormElement>
     ) {
         event.preventDefault();
+        const formulario = event.currentTarget;
 
-        const dadosFormulario = new FormData(event.currentTarget);
+        const dadosFormulario = new FormData(formulario);
 
         const dados = {
             ...Object.fromEntries(dadosFormulario.entries()),
@@ -54,6 +99,8 @@ export default function AlterarSenha() {
                 tipo: "sucesso",
                 mensagem: "Senha alterada com sucesso!"
             });
+
+            formulario.reset();
 
         } catch (error) {
             setFeedback({
@@ -120,6 +167,7 @@ export default function AlterarSenha() {
                                 </span>
                                 <input
                                     id="senha"
+                                    name="senha"
                                     type={mostrarSenha ? 'text' : 'password'}
                                     placeholder="Digite sua senha"
                                     autoComplete="current-password"
@@ -161,6 +209,7 @@ export default function AlterarSenha() {
                                 </span>
                                 <input
                                     id="confirmSenha"
+                                    name="confirmSenha"
                                     type={mostrarConfirmarSenha ? 'text' : 'password'}
                                     placeholder="Confirme sua senha"
                                     autoComplete="current-password"
