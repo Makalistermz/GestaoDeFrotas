@@ -34,16 +34,23 @@ export class AuthService {
     async login(dto: LoginDto) {
         const user = await this.users.encontrarPorEmailOuMatricula(dto.login);
 
-        if (!user) {
-            throw new UnauthorizedException('E-mail ou matrícula incorretos');
+        // Garante que user.senha existe antes de comparar no bcrypt
+        if (!user || !user.senha || !(await bcrypt.compare(dto.senha, user.senha))) {
+            throw new UnauthorizedException('Credenciais inválidas');
         }
 
-        if (!(await bcrypt.compare(dto.senha, user.senha))) {
-            throw new UnauthorizedException('Senha inválida');
-        }
+        return this.concluirLogin(user);
+    }
 
-        const payload = { sub: user.id, tipo: user.tipo_usuario };
-        return { access_token: await this.jwt.signAsync(payload) };
+    async concluirLogin(user: UsuarioAutenticado): Promise<LoginResponse> {
+        const payload = {
+            sub: user.id,
+            tipo: user.tipo_usuario,
+        };
+
+        return {
+            access_token: await this.jwt.signAsync(payload),
+        };
     }
 
     async cadastrarUsuario(dados: CadastrarUsuarioDto) {
