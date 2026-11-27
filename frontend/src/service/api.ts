@@ -12,7 +12,7 @@ export async function apiFetch(caminho: string, opcoes: RequestInit = {}) {
 
     if (resposta.status === 401) {
         localStorage.removeItem("access_token");
-        window.location.href = "/login";
+        window.location.replace("/");
     }
 
     return resposta;
