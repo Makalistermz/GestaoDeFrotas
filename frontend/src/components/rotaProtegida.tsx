@@ -17,7 +17,7 @@ function RotaProtegida() {
     }, []);
 
     if (autenticado === null) return null;
-    return autenticado ? <Outlet /> : <Navigate to="/login" replace />;
+    return autenticado ? <Outlet /> : <Navigate to="/" replace />;
 }
 
 export default RotaProtegida;
