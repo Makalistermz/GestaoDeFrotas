@@ -121,6 +121,12 @@ export class AuthService {
             }
         });
 
-        await this.emailService.enviarEmailDeCadastro(emailMinusculo, nome);
+        try {
+            await this.emailService.enviarEmailDeCadastro(emailMinusculo, nome);
+        } catch (error) {
+            console.error('Falha ao enviar e-mail de cadastro', error);
+        }
+
+    };
     };
 }
