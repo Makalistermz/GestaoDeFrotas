@@ -1,6 +1,7 @@
 import brasao from "../assets/brasao.webp"
 import { useState } from 'react';
 import '../css/login.css';
+import ModalFeedback from "../components/modalFeedback";
 
 const icon = {
     fill: 'none',
@@ -14,6 +15,53 @@ const icon = {
 
 function Login() {
     const [mostrarSenha, setMostrarSenha] = useState(false);
+    const [feedback, setFeedback] = useState({
+        aberto: false,
+        tipo: "erro" as "erro" | "sucesso",
+        mensagem: "",
+    });
+
+
+    async function login(
+        event: React.SubmitEvent<HTMLFormElement>
+    ) {
+        try {
+            event.preventDefault();
+
+            const formulario = event.currentTarget;
+
+            const dadosFormulario = new FormData(formulario);
+
+            const resposta = await fetch(`${import.meta.env.VITE_API_URL}/auth/sing-in`, {
+                method: "POST",
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    login: dadosFormulario.get("login"),
+                    senha: dadosFormulario.get("senha"),
+                }),
+            });
+
+            const resultado = await resposta.json();
+
+            if (!resposta.ok) {
+                setFeedback({
+                    aberto: true,
+                    tipo: "erro",
+                    mensagem: resultado.message || resultado.error || "Não foi possivel realizar o login",
+                });
+                return;
+            }
+
+            formulario.reset();
+
+        } catch (error) {
+            setFeedback({
+                aberto: true,
+                tipo: "erro",
+                mensagem: `Não foi possivel fazer login: ${error}`
+            })
+        }
+    }
 
     return (
         <div className="auth-page display-grid">
@@ -57,7 +105,7 @@ function Login() {
                     <h2 id="auth-titulo">Acessar o sistema</h2>
                     <p className="auth-sub">Entre com suas credenciais institucionais.</p>
 
-                    <form>
+                    <form onSubmit={login}>
                         <div className={`auth-field`}>
                             <label htmlFor="usuario">Usuário</label>
                             <div className="auth-input-wrap position-relative">
@@ -69,6 +117,7 @@ function Login() {
                                 </span>
                                 <input
                                     id="usuario"
+                                    name="login"
                                     type="text"
                                     placeholder="Matrícula ou e-mail"
                                     autoComplete="username"
@@ -87,6 +136,7 @@ function Login() {
                                 </span>
                                 <input
                                     id="senha"
+                                    name="senha"
                                     type={mostrarSenha ? 'text' : 'password'}
                                     placeholder="Digite sua senha"
                                     autoComplete="current-password"
@@ -133,6 +183,19 @@ function Login() {
                         <span>Acesso restrito a servidores autorizados. Em caso de dúvidas, procure o setor de TI.</span>
                     </div>
                 </section>
+
+                <ModalFeedback 
+                    aberto={feedback.aberto}
+                    tipo={feedback.tipo}
+                    mensagem={feedback.mensagem}
+                    aoFechar={() => {
+                        setFeedback((estadoAtual) => ({
+                            ...estadoAtual,
+                            aberto: false
+                        }));
+                    }}
+                />
+
             </main>
         </div>
     );
