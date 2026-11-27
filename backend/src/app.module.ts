@@ -5,7 +5,6 @@ import { PrismaModule } from './prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { ConfigModule } from '@nestjs/config';
-import { CadastroUsuarioModule } from './cadastroUsuario/cadastroUsuario.module';
 import { EmailModule } from './email/email.module';
 import { AlterarSenhaModule } from './alterar-senha/alterar-senha.module';
 
@@ -17,8 +16,7 @@ import { AlterarSenhaModule } from './alterar-senha/alterar-senha.module';
     }),
     PrismaModule, 
     AuthModule, 
-    UsersModule, 
-    CadastroUsuarioModule, 
+    UsersModule,
     EmailModule, 
     AlterarSenhaModule
   ],
