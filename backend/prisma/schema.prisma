@@ -18,6 +18,7 @@ model pessoas {
   tipo_usuario                pessoas_tipo_usuario @default(user)
   token_recuperacao           String?              @db.VarChar(64)
   token_recuperacao_expira_em DateTime?
+  ativo                       Boolean              @default(false)
 }
 
 enum pessoas_tipo_usuario {
