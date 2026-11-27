@@ -1,7 +1,10 @@
-import { Controller, Post, HttpCode, Body } from '@nestjs/common';
+import { Controller, Post, HttpCode, Body, Get, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CadastrarUsuarioDto } from './dto/criarUsuario.dto';
 import { LoginDto } from './dto/login.dto';
+import { JwtAuthGuard } from './jwt-auth.guard';
+import type { JwtPayload } from './jwt-auth.guard';
+import { UsuarioAtual } from './decorators/usuario-atual.decorator';
 
 @Controller('auth')
 export class AuthController {
@@ -24,4 +27,13 @@ export class AuthController {
             dados
         );
     };
+
+    @Get('profile')
+    @UseGuards(JwtAuthGuard)
+    @HttpCode(200)
+    listarPerfil(
+        @UsuarioAtual() usuario: JwtPayload
+    ) {
+        return this.authService.listarPerfil(usuario.sub);
+    }
 }

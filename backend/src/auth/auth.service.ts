@@ -8,6 +8,7 @@ import {
     Injectable,
     UnauthorizedException,
     BadRequestException,
+    NotFoundException,
 } from '@nestjs/common';
 import { CadastrarUsuarioDto } from './dto/criarUsuario.dto';
 
@@ -128,5 +129,25 @@ export class AuthService {
         }
 
     };
+
+    async listarPerfil(usuarioLogado: number) {
+        const usuario = await this.prisma.pessoas.findUnique({
+            where: {
+                id: usuarioLogado,
+            },
+            select: {
+                id: true,
+                nome: true,
+                telefone: true,
+                email: true,
+                matricula: true,
+            },
+        });
+
+        if (!usuario) {
+            throw new NotFoundException('Usuário não encontrado');
+        }
+
+        return usuario;
     };
 }
