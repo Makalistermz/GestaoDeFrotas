@@ -20,6 +20,7 @@ export default function AlterarSenha() {
     const [mostrarSenha, setMostrarSenha] = useState(false);
     const [mostrarConfirmarSenha, setMostrarConfirmarSenha] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [senha, setSenha] = useState("");
     const [feedback, setFeedback] = useState({
         aberto: false,
         tipo: "erro" as "erro" | "sucesso",
@@ -113,6 +114,13 @@ export default function AlterarSenha() {
         };
     };
 
+    const requisitos = [
+        { texto: "Letra minúscula", ok: /[a-z]/.test(senha) },
+        { texto: "Letra maiúscula", ok: /[A-Z]/.test(senha) },
+        { texto: "Caracteres especiais", ok: /[^0-9A-Za-z\s]/.test(senha) },
+        { texto: "Números", ok: /[0-9]/.test(senha) },
+    ];
+
     return (
         <div className="auth-page display-grid">
             <aside className="auth-brand display-flex position-relative">
@@ -173,6 +181,7 @@ export default function AlterarSenha() {
                                     autoComplete="current-password"
                                     minLength={8}
                                     required
+                                    onChange={(evento) => {setSenha(evento.target.value)}}
                                 />
                                 <button
                                     type="button"
@@ -239,6 +248,17 @@ export default function AlterarSenha() {
                                 </button>
                             </div>
                         </div>
+
+                        {senha.length > 0 && (
+                            <ul className="requisitos">
+                                {requisitos.map((item) => (
+                                    <li key={item.texto} className={item.ok ? "ok" : ""}>
+                                        <span aria-hidden="true">{item.ok ? "✓" : "X"}</span>
+                                        <p>{item.texto}</p>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
 
                         <button 
                             type="submit" 
