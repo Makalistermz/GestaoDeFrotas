@@ -1,5 +1,6 @@
 import brasao from "../assets/brasao.webp"
 import { useState } from 'react';
+import { useNavigate } from "react-router";
 import '../css/login.css';
 import ModalFeedback from "../components/modalFeedback";
 
@@ -14,6 +15,7 @@ const icon = {
 };
 
 function Login() {
+    const navigate = useNavigate();
     const [mostrarSenha, setMostrarSenha] = useState(false);
     const [feedback, setFeedback] = useState({
         aberto: false,
@@ -44,15 +46,19 @@ function Login() {
             const resultado = await resposta.json();
 
             if (!resposta.ok) {
-                setFeedback({
-                    aberto: true,
-                    tipo: "erro",
-                    mensagem: resultado.message || resultado.error || "Não foi possivel realizar o login",
-                });
+                const mensagem =
+                    resposta.status === 429
+                        ? "Muitas tentativas. Aguarde 1 minuto e tente novamente."
+                        : resultado.message || resultado.error || "Não foi possivel realizar o login";
+
+                setFeedback({ aberto: true, tipo: "erro", mensagem });
                 return;
             }
 
+            localStorage.setItem("access_token", resultado.access_token);
+
             formulario.reset();
+            navigate("/home");
 
         } catch (error) {
             setFeedback({
