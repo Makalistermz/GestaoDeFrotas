@@ -1,23 +1,30 @@
 import { Module } from '@nestjs/common';
+import { JwtModule } from '@nestjs/jwt';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
-import { JwtModule } from '@nestjs/jwt';
 import { UsersModule } from '../users/users.module';
 import { EmailModule } from '../email/email.module';
 import { PrismaService } from '../prisma/prisma.service';
 
 @Module({
-  providers: [AuthService, PrismaService],
   imports: [
     EmailModule,
     UsersModule,
-    JwtModule.register({ 
+    JwtModule.registerAsync({
       global: true,
-      secret: process.env.JWT_SECRET,
-      signOptions: { expiresIn: '15m' }, 
+      useFactory: () => {
+        const secret = process.env.JWT_SECRET;
+
+        if (!secret) {
+          throw new Error('JWT_SECRET não definido no .env');
+        }
+
+        return { secret, signOptions: { expiresIn: '15m' } };
+      },
     }),
   ],
   controllers: [AuthController],
-  exports: [AuthService]
+  providers: [AuthService, PrismaService],
+  exports: [AuthService],
 })
 export class AuthModule {}
