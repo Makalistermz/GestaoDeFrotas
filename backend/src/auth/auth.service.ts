@@ -4,7 +4,6 @@ import { LoginDto } from './dto/login.dto';
 import { UsersService } from '../users/users.service';
 import { PrismaService } from '../prisma/prisma.service';
 import { EmailService } from '../email/email.service';
-CadastrarUsuarioDto
 import { 
     Injectable,
     UnauthorizedException,
