@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
+import { ThrottlerModule } from '@nestjs/throttler';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { UsersModule } from '../users/users.module';
@@ -22,6 +23,7 @@ import { PrismaService } from '../prisma/prisma.service';
         return { secret, signOptions: { expiresIn: '15m' } };
       },
     }),
+    ThrottlerModule.forRoot([{ ttl: 60000, limit: 5 }]), //bloquio de login após 5 tentativas
   ],
   controllers: [AuthController],
   providers: [AuthService, PrismaService],

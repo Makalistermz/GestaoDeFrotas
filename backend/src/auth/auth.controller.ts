@@ -5,12 +5,14 @@ import { LoginDto } from './dto/login.dto';
 import { JwtAuthGuard } from './jwt-auth.guard';
 import type { JwtPayload } from './jwt-auth.guard';
 import { UsuarioAtual } from './decorators/usuario-atual.decorator';
+import { ThrottlerGuard } from '@nestjs/throttler';
 
 @Controller('auth')
 export class AuthController {
     constructor(private readonly authService: AuthService) {}
 
     @Post('sing-in')
+    @UseGuards(ThrottlerGuard) //bloqueia o login por 1min caso tiver 6 erros consecutivos
     @HttpCode(200)
     login(
         @Body() dto: LoginDto
